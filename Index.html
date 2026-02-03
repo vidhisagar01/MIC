@@ -171,6 +171,17 @@ document.addEventListener("tidioChat-ready", function() {
 });
 </script>
 
+<script>
+if (!sessionStorage.getItem("tidioLoaded")) {
+
+    var tidioScript = document.createElement("script");
+    tidioScript.src = "//code.tidio.co/XXXXXXXXXXXX.js";
+    tidioScript.async = true;
+    document.body.appendChild(tidioScript);
+
+    sessionStorage.setItem("tidioLoaded", "true");
+}
+</script>
 
     
     <!-- Chat Reset Script (ADD THIS) -->
@@ -216,6 +227,7 @@ window.addEventListener("load", waitForTidio);
 
 </body>
 </html>
+
 
 
 
