@@ -157,9 +157,32 @@
 </footer>
 
 <script src="//code.tidio.co/hummmiub84mo6ic5msf8rejyemoujxir.js" async></script>
+    <!-- Your website content above -->
+
+    <!-- Tidio Chat Script -->
+    <script src="//code.tidio.co/xxxxxxxxxxxx.js" async></script>
+
+    <!-- Chat Reset Script (ADD THIS) -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function clearTidio() {
+            if (window.tidioChatApi) {
+                window.tidioChatApi.clearChat();
+                window.tidioChatApi.close();
+            } else {
+                setTimeout(clearTidio, 500);
+            }
+        }
+        clearTidio();
+    });
+    </script>
 
 </body>
 </html>
+
+</body>
+</html>
+
 
 
 
