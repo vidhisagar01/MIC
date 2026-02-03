@@ -163,25 +163,49 @@
     <script src="//code.tidio.co/xxxxxxxxxxxx.js" async></script>
 
     <!-- Chat Reset Script (ADD THIS) -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function clearTidio() {
-            if (window.tidioChatApi) {
-                window.tidioChatApi.clearChat();
-                window.tidioChatApi.close();
-            } else {
-                setTimeout(clearTidio, 500);
-            }
+<script>
+function resetTidioCompletely() {
+
+    // 1️⃣ Clear Tidio chat via API
+    if (window.tidioChatApi) {
+        window.tidioChatApi.clearChat();
+        window.tidioChatApi.close();
+    }
+
+    // 2️⃣ Delete Tidio cookies
+    document.cookie.split(";").forEach(function(c) {
+        if (c.trim().startsWith("_tidio") || c.trim().startsWith("tidio")) {
+            document.cookie = c
+                .replace(/^ +/, "")
+                .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
         }
-        clearTidio();
     });
-    </script>
+
+    // 3️⃣ Clear browser storage used by Tidio
+    localStorage.removeItem("tidio-state");
+    localStorage.removeItem("tidio-chat-history");
+    sessionStorage.clear();
+}
+
+// Wait until Tidio fully loads
+function waitForTidio() {
+    if (window.tidioChatApi) {
+        resetTidioCompletely();
+    } else {
+        setTimeout(waitForTidio, 500);
+    }
+}
+
+window.addEventListener("load", waitForTidio);
+</script>
+
 
 </body>
 </html>
 
 </body>
 </html>
+
 
 
 
