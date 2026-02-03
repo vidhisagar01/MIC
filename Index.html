@@ -162,6 +162,17 @@
     <!-- Tidio Chat Script -->
     <script src="//code.tidio.co/xxxxxxxxxxxx.js" async></script>
 
+<script>
+document.addEventListener("tidioChat-ready", function() {
+    tidioChatApi.setVisitorData({
+        email: "",
+        name: ""
+    });
+});
+</script>
+
+
+    
     <!-- Chat Reset Script (ADD THIS) -->
 <script>
 function resetTidioCompletely() {
@@ -205,6 +216,7 @@ window.addEventListener("load", waitForTidio);
 
 </body>
 </html>
+
 
 
 
